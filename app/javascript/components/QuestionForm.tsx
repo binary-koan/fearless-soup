@@ -10,14 +10,7 @@ const QuestionForm: FC<{ onAnswer: (answer: string) => void; hideButtons: boolea
   const [question, setQuestion] = useState("What is The Minimalist Entrepreneur about?")
   const [isLoading, setLoading] = useState(false)
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    if (!question) {
-      alert("Please ask a question!")
-      return
-    }
-
+  const onAsk = async (question: string) => {
     setLoading(true)
 
     try {
@@ -37,14 +30,21 @@ const QuestionForm: FC<{ onAnswer: (answer: string) => void; hideButtons: boolea
     }
   }
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    onAsk(question)
+  }
+
   const onLucky = () => {
     const options = [
       "What is a minimalist entrepreneur?",
       "What is your definition of community?",
       "How do I decide what kind of business I should start?"
     ]
+    const selection = options[randomInteger(0, options.length - 1)]
 
-    setQuestion(options[randomInteger(0, options.length - 1)])
+    setQuestion(selection)
+    onAsk(selection)
   }
 
   return (
@@ -56,7 +56,7 @@ const QuestionForm: FC<{ onAnswer: (answer: string) => void; hideButtons: boolea
           {isLoading ? "Asking ..." : "Ask question"}
         </button>
 
-        <button type="button" className="lucky" onClick={onLucky}>
+        <button type="button" disabled={isLoading} className="lucky" onClick={onLucky}>
           I'm feeling lucky
         </button>
       </div>
