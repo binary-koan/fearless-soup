@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+require_relative "../config/environment"
+
+# Could add an arg parser if there are more options, but this is simpler for now
+if ARGV[0].blank?
+  puts "Please provide a PDF file path"
+  exit
+end
+
+ConvertPdfToPagesEmbeddings.new(ARGV[0]).call

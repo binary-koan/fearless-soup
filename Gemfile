@@ -2,6 +2,8 @@ source "https://rubygems.org"
 
 ruby "3.2.2"
 
+gem "dotenv-rails", groups: [:development, :test]
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.2"
 
@@ -49,3 +51,9 @@ end
 gem "shakapacker", "= 7.1"
 
 gem "react-rails", "= 3.1"
+
+gem "ruby-openai", "~> 6.3.0"
+
+gem "pdf-reader", "~> 2.11"
+
+gem "tokenizers", "~> 0.4.2"
