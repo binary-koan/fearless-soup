@@ -3,7 +3,7 @@ class MainController < ApplicationController
   end
 
   def ask
-    question = AnswerQuestion.new(params[:question]).call
+    question = AnswerQuestion.new(params.require(:question).strip).call
 
     render json: question.as_json(only: [:id, :question, :answer])
   end
