@@ -206,7 +206,7 @@ GEM
     rake (13.1.0)
     rdoc (6.6.0)
       psych (>= 4.0.0)
-    react-rails (3.1.0)
+    react-rails (3.1.1)
       babel-transpiler (>= 0.7.0)
       connection_pool
       execjs
@@ -287,7 +287,7 @@ DEPENDENCIES
   pdf-reader (~> 2.11)
   puma (>= 5.0)
   rails (~> 7.1.2)
-  react-rails (= 3.1)
+  react-rails (= 3.1.1)
   rspec-rails (~> 6.1.0)
   ruby-openai (~> 6.3.0)
   shakapacker (= 7.1)
