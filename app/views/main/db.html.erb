@@ -1,0 +1,12 @@
+<h2><%= @questions.size %> questions answered</h2>
+
+<ul class="queue">
+  <% @questions.each do |question| %>
+    <li>
+      <strong><%= question.question %></strong>
+      <p><%= question.answer %></p>
+
+      <p><small>Asked <%= question.ask_count %> times</small></p>
+    </li>
+  <% end %>
+</ul>

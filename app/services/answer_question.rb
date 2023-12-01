@@ -23,7 +23,10 @@ class AnswerQuestion
   def call
     existing_question = Question.find_by(question: question_text)
 
-    return existing_question if existing_question
+    if existing_question
+      existing_question.increment!(:ask_count)
+      return existing_question
+    end
 
     answer, context = answer_query_with_context
 

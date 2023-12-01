@@ -8,4 +8,8 @@ class MainController < ApplicationController
 
     render json: question.as_json(only: [:id, :question, :answer])
   end
+
+  def db
+    @questions = Question.all.order(ask_count: :desc)
+  end
 end
