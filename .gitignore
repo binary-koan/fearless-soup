@@ -44,3 +44,5 @@ yarn-debug.log*
 scratch.md
 book.pdf
 book.pdf.*.csv
+
+.vscode
