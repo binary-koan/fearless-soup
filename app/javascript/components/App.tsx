@@ -1,33 +1,22 @@
-import { useState } from "react"
+import { FC, useState } from "react"
+import AnswerDisplay from "./AnswerDisplay"
+import Footer from "./Footer"
+import Header from "./Header"
+import QuestionForm from "./QuestionForm"
 
-const csrfToken = document.querySelector<HTMLMetaElement>("meta[name=csrf-token]")!.content
-
-const App: React.FC = () => {
-  const [question, setQuestion] = useState("")
+const App: FC = () => {
   const [answer, setAnswer] = useState<string | null>(null)
-
-  const fetchAnswer = async () => {
-    const response = await fetch(`/ask?question=${question}`, {
-      method: "POST",
-      headers: {
-        "X-CSRF-Token": csrfToken
-      }
-    })
-    const data = await response.json()
-    setAnswer(data.answer)
-  }
 
   return (
     <>
-      <input
-        type="text"
-        placeholder="Question"
-        value={question}
-        onChange={(e) => setQuestion(e.target.value)}
-      />
-      <button onClick={fetchAnswer}>Answer</button>
+      <Header />
 
-      {answer && <p>{answer}</p>}
+      <div className="main">
+        <QuestionForm hideButtons={!!answer} onAnswer={setAnswer} />
+        <AnswerDisplay answer={answer} onReset={() => setAnswer(null)} />
+      </div>
+
+      <Footer />
     </>
   )
 }
