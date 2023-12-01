@@ -54,8 +54,12 @@ gem "shakapacker", "= 7.1"
 
 gem "react-rails", "= 3.1.1"
 
-gem "ruby-openai", "~> 6.3.0"
+# Older version of the OpenAI gem which still supports the completions endpoint.
+# Should be upgraded to v6 and completions should be replaced with chat.
+gem "ruby-openai", "~> 5.2.0"
 
 gem "pdf-reader", "~> 2.11"
 
 gem "tokenizers", "~> 0.4.2"
+
+gem "matrix", "~> 0.4.2"
