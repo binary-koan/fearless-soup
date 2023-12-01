@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   get "admin", to: "admin#index"
   namespace :admin do
-    resources :questions, only: [:index, :create, :show, :update, :destroy]
+    resources :questions, only: [:index, :show, :destroy]
   end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

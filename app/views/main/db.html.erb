@@ -6,7 +6,7 @@
       <strong><%= question.question %></strong>
       <p><%= question.answer %></p>
 
-      <p><small>Asked <%= question.ask_count %> times</small></p>
+      <p><small>Asked <%= pluralize(question.ask_count, 'time') %></small></p>
     </li>
   <% end %>
 </ul>

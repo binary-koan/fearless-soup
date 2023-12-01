@@ -112,21 +112,21 @@ class AnswerQuestion
     @query_embedding ||= client.embeddings(parameters: {
       model: QUERY_EMBEDDINGS_MODEL,
       input: question_text
-    })['data'][0]['embedding']
+    })["data"][0]["embedding"]
   end
 
   def pages_by_title
-    @pages_by_title ||= CSV.read('book.pdf.pages.csv', headers: :first_row).index_by { |row| row['title'] }
+    @pages_by_title ||= CSV.read("book.pdf.pages.csv", headers: :first_row).index_by { |row| row["title"] }
   end
 
   def document_embeddings
-    @document_embeddings ||= CSV.read('book.pdf.embeddings.csv', headers: :first_row).to_h do |row|
-      [row['title'], row.fields[1..-1].map(&:to_f)]
+    @document_embeddings ||= CSV.read("book.pdf.embeddings.csv", headers: :first_row).to_h do |row|
+      [row["title"], row.fields[1..-1].map(&:to_f)]
     end
   end
 
   def question_text
-    text.end_with?('?') ? text : "#{text}?"
+    text.end_with?("?") ? text : "#{text}?"
   end
 
   def client
