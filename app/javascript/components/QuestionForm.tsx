@@ -1,14 +1,23 @@
 import { ChangeEvent, FC, useState } from "react"
 import { randomInteger } from "../utils/randomInteger"
 
+export interface QuestionResponse {
+  id: number
+  question: string
+  answer: string
+}
+
 const csrfToken = document.querySelector<HTMLMetaElement>("meta[name=csrf-token]")!.content
 
 const QuestionForm: FC<{
+  initialValue?: string
   onInput: () => void
-  onAnswer: (answer: string) => void
+  onResponse: (response: QuestionResponse) => void
   hideButtons: boolean
-}> = ({ onInput, onAnswer, hideButtons }) => {
-  const [question, setQuestion] = useState("What is The Minimalist Entrepreneur about?")
+}> = ({ initialValue, onInput, onResponse, hideButtons }) => {
+  const [question, setQuestion] = useState(
+    initialValue || "What is The Minimalist Entrepreneur about?"
+  )
   const [isLoading, setLoading] = useState(false)
 
   const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -26,8 +35,7 @@ const QuestionForm: FC<{
           "X-CSRF-Token": csrfToken
         }
       })
-      const data = await response.json()
-      onAnswer(data.answer)
+      onResponse(await response.json())
     } catch (e) {
       console.error(e)
       alert("Something went wrong!")

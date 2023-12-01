@@ -1,8 +1,13 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect, useRef, useState } from "react"
 import { randomInteger } from "../utils/randomInteger"
 import { sleep } from "../utils/sleep"
 
-const AnswerDisplay: FC<{ answer: string | null; onReset: () => void }> = ({ answer, onReset }) => {
+const AnswerDisplay: FC<{
+  answer?: string
+  onFullyDisplayed: () => void
+  onReset: () => void
+}> = ({ answer, onFullyDisplayed, onReset }) => {
+  const isInitialAnswer = useRef(true)
   const [displayedAnswer, setDisplayedAnswer] = useState("")
 
   useEffect(() => {
@@ -21,12 +26,22 @@ const AnswerDisplay: FC<{ answer: string | null; onReset: () => void }> = ({ ans
 
         await sleep(randomInteger(30, 70))
       }
+
+      onFullyDisplayed()
     }
 
-    typeText()
+    if (isInitialAnswer.current) {
+      setDisplayedAnswer(answer)
+    } else {
+      typeText()
+    }
 
     return () => controller.abort()
   }, [answer])
+
+  useEffect(() => {
+    isInitialAnswer.current = false
+  }, [])
 
   const finishedTyping = displayedAnswer === answer
 

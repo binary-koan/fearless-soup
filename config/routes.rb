@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "main#index"
+  get "question/:id", to: "main#index"
   post "ask", to: "main#ask"
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

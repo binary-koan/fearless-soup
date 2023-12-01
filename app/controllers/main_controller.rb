@@ -1,5 +1,6 @@
 class MainController < ApplicationController
   def index
+    @question = Question.find_by(id: params[:id])
   end
 
   def ask

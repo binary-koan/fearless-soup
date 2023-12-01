@@ -2,20 +2,33 @@ import { FC, useState } from "react"
 import AnswerDisplay from "./AnswerDisplay"
 import Footer from "./Footer"
 import Header from "./Header"
-import QuestionForm from "./QuestionForm"
+import QuestionForm, { QuestionResponse } from "./QuestionForm"
 
-const App: FC = () => {
-  const [answer, setAnswer] = useState<string | null>(null)
+const App: FC<{ initialResponse?: QuestionResponse }> = ({ initialResponse }) => {
+  const [response, setResponse] = useState<QuestionResponse | undefined>(initialResponse)
 
-  const reset = () => setAnswer(null)
+  const reset = () => setResponse(undefined)
+
+  const updatePath = () => {
+    // This feels a bit awkward. Thought I might as well replicate the original behaviour precisely,
+    // but IMO it would be nicer to just update the URL as soon as the request is complete
+    if (response) {
+      window.history.pushState({}, "", `/question/${response.id}`)
+    }
+  }
 
   return (
     <>
       <Header />
 
       <div className="main">
-        <QuestionForm hideButtons={!!answer} onAnswer={setAnswer} onInput={reset} />
-        <AnswerDisplay answer={answer} onReset={reset} />
+        <QuestionForm
+          initialValue={initialResponse?.question}
+          hideButtons={!!response}
+          onResponse={setResponse}
+          onInput={reset}
+        />
+        <AnswerDisplay answer={response?.answer} onFullyDisplayed={updatePath} onReset={reset} />
       </div>
 
       <Footer />
