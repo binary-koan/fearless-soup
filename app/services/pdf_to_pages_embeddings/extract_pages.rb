@@ -1,5 +1,9 @@
 class PdfToPagesEmbeddings::ExtractPages
-  Page = Data.define(:number, :text, :token_count)
+  Page = Data.define(:number, :text, :token_count) do
+    def title
+      "Page #{number}"
+    end
+  end
 
   attr_reader :filename
 

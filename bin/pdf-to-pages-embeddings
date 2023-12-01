@@ -1,9 +1,16 @@
 #!/usr/bin/env ruby
 require_relative "../config/environment"
 
+Rails.logger = Logger.new(STDOUT)
+
 # Could add an arg parser if there are more options, but this is simpler for now
 if ARGV[0].blank?
   puts "Please provide a PDF file path"
+  exit
+end
+
+if !File.exist?(ARGV[0])
+  puts "File #{ARGV[0]} does not exist"
   exit
 end
 
