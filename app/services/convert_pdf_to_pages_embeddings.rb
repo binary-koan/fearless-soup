@@ -20,7 +20,7 @@ class ConvertPdfToPagesEmbeddings
       csv << ["title", "content", "tokens"]
 
       pages.each do |page|
-        csv << [page.title, page.text, page.token_count]
+        csv << [page.title, page.text.squish, page.token_count]
       end
     end
   end
