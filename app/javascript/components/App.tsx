@@ -7,13 +7,15 @@ import QuestionForm from "./QuestionForm"
 const App: FC = () => {
   const [answer, setAnswer] = useState<string | null>(null)
 
+  const reset = () => setAnswer(null)
+
   return (
     <>
       <Header />
 
       <div className="main">
-        <QuestionForm hideButtons={!!answer} onAnswer={setAnswer} />
-        <AnswerDisplay answer={answer} onReset={() => setAnswer(null)} />
+        <QuestionForm hideButtons={!!answer} onAnswer={setAnswer} onInput={reset} />
+        <AnswerDisplay answer={answer} onReset={reset} />
       </div>
 
       <Footer />

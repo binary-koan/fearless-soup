@@ -1,14 +1,20 @@
-import { FC, useState } from "react"
+import { ChangeEvent, FC, useState } from "react"
 import { randomInteger } from "../utils/randomInteger"
 
 const csrfToken = document.querySelector<HTMLMetaElement>("meta[name=csrf-token]")!.content
 
-const QuestionForm: FC<{ onAnswer: (answer: string) => void; hideButtons: boolean }> = ({
-  onAnswer,
-  hideButtons
-}) => {
+const QuestionForm: FC<{
+  onInput: () => void
+  onAnswer: (answer: string) => void
+  hideButtons: boolean
+}> = ({ onInput, onAnswer, hideButtons }) => {
   const [question, setQuestion] = useState("What is The Minimalist Entrepreneur about?")
   const [isLoading, setLoading] = useState(false)
+
+  const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setQuestion(e.target.value)
+    onInput()
+  }
 
   const onAsk = async (question: string) => {
     setLoading(true)
@@ -49,7 +55,7 @@ const QuestionForm: FC<{ onAnswer: (answer: string) => void; hideButtons: boolea
 
   return (
     <form onSubmit={onSubmit}>
-      <textarea name="question" value={question} onChange={(e) => setQuestion(e.target.value)} />
+      <textarea name="question" value={question} onChange={onChange} />
 
       <div className="buttons" style={{ display: hideButtons ? "none" : undefined }}>
         <button type="submit" disabled={isLoading}>
