@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AskMyBook</title>
+    <title>Ask My Book: The Minimalist Entrepreneur</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= favicon_pack_tag 'static/packs/favicon.svg', rel: 'icon', type: 'image/svg+xml' %>
+
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:site" content="@shl"/>
+    <meta name="og:title" content="Ask My Book: The Minimalist Entrepreneur"/>
+    <meta name="og:description" content="Ask questions of my book, get answers in my voice, powered by AI"/>
+    <meta name="og:image" content="<%= request.base_url + asset_pack_path('static/packs/social.png') %>"/>
+    <meta name="twitter:image:src" content="<%= request.base_url + asset_pack_path('static/packs/social.png') %>"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_pack_tag "application" %>
     <%= javascript_pack_tag "application" %>
   </head>
 
