@@ -46,3 +46,5 @@ book.pdf
 book.pdf.*.csv
 
 .vscode
+
+fly.toml

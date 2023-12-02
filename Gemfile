@@ -60,3 +60,7 @@ gem "pdf-reader", "~> 2.11"
 gem "tokenizers", "~> 0.4.2"
 
 gem "matrix", "~> 0.4.2"
+
+gem "dockerfile-rails", ">= 1.5", :group => :development
+
+gem "pg", "~> 1.5"

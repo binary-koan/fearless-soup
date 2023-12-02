@@ -95,6 +95,8 @@ GEM
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     diff-lcs (1.5.0)
+    dockerfile-rails (1.5.12)
+      rails (>= 3.0.0)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
@@ -160,6 +162,7 @@ GEM
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
+    pg (1.5.4)
     psych (5.1.1.1)
       stringio
     puma (6.4.0)
@@ -276,10 +279,12 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   debug
+  dockerfile-rails (>= 1.5)
   dotenv-rails
   jbuilder
   matrix (~> 0.4.2)
   pdf-reader (~> 2.11)
+  pg (~> 1.5)
   puma (>= 5.0)
   rails (~> 7.1.2)
   react-rails (= 3.1.1)
